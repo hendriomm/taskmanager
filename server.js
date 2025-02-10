@@ -23,9 +23,9 @@ app.listen(PORT, () => {
 let tasks = [];
 
 // Get all tasks
-app.get('/tasks', (req, res) => {
-    res.json(tasks);
-});
+// app.get('/tasks', (req, res) => {
+//     res.json(tasks);
+// });
 
 // Add a new task
 app.post('/tasks', (req, res) => {
@@ -113,3 +113,49 @@ function authenticateToken(req, res, next) {
 app.get("/tasks", authenticateToken, (req, res) => {
     res.json(tasks);
 });
+
+
+// // DATABASE
+
+// const mongoose = require("mongoose");
+
+// // Connect to MongoDB
+// mongoose.connect("mongodb://127.0.0.1:27017/taskmanager", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// });
+
+// // Define the Task schema
+// const taskSchema = new mongoose.Schema({
+//     title: { type: String, required: true },
+//     completed: { type: Boolean, default: false },
+// });
+
+// // Define the Task model
+// const Task = mongoose.model("Task", taskSchema);
+
+// // Update routes to use the database
+
+// // Get all tasks
+// app.get("/tasks", authenticateToken, async (req, res) => {
+//     const tasks = await Task.find();
+//     res.json(tasks);
+// });
+
+// // Create a new task
+// app.post("/tasks", authenticateToken, async (req, res) => {
+//     const tasks = await Task(req.body);
+//     await task.save();
+//     res.status(201).json(task);
+// });
+
+// // Update a task
+// app.put("/tasks/:id", authenticateToken, async (req, res) => {
+//     const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+//     res.json(task);
+// });
+
+// // Delete a task
+// app.delete("/tasks/:id", authenticateToken, async (req, res) => {
+//     await Task.findByIdAndDelete(req.params.id);
+// });
